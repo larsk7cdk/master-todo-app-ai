@@ -1,11 +1,4 @@
-using System;
-using System.IO;
 using System.Reflection;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using ToDo.API;
 using ToDo.Application;
 using ToDo.Infrastructure;
@@ -30,7 +23,7 @@ var configuration = builder.Configuration;
 // Add Application services to the container.
 builder.Services
     .AddApi()
-    .AddApplication(configuration)
+    .AddApplication()
     .AddInfrastructure(configuration)
     .AddPersistence(configuration);
 
