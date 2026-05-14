@@ -40,7 +40,20 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+Verify the following gates against the constitution at `.specify/memory/constitution.md`:
+
+- [ ] **Layer boundaries**: No new project reference violates inward-only dependency rule
+  (`Domain` ← no refs; `Application` ← no `API`/`Persistence`/`Infrastructure`; `Persistence` ← no `API`/`Application`)
+- [ ] **Domain isolation**: Proposed Domain additions carry zero framework or NuGet dependencies
+- [ ] **Repository contract**: All DB access routes through `ICrudRepository<T>`; no direct `DbContext` usage
+  outside `ToDo.Persistence`
+- [ ] **API contract stability**: Routes, verbs, and DTO shapes match the agreed contract; amendments are
+  explicitly approved
+- [ ] **Mapper classes planned**: Every DTO ↔ Domain ↔ Entity translation has a dedicated mapper class
+- [ ] **Handler SRP**: Each Application handler covers exactly one use case
+- [ ] **Test plan complete**: Unit, integration, and E2E tests planned for all acceptance scenarios
+- [ ] **No new frameworks**: No NuGet packages or frameworks introduced without explicit approval
+- [ ] **SonarQube**: Analysis will be run; plan includes resolving any blocker/critical issues before merge
 
 ## Project Structure
 
